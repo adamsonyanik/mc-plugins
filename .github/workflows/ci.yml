@@ -9,26 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: thenativeweb/get-next-version@2.6.2
-        id: get-next-version
       - uses: actions/setup-java@v4
         with:
           distribution: zulu
           java-version: 17
           cache: gradle
       - run: ./gradlew build --no-daemon
-        env:
-          #GH_ACTIONS_RELEASE_VERSION: ${{ steps.get-next-version.outputs.version }}
-          GH_ACTIONS_RELEASE_VERSION: abc
       - uses: actions/upload-artifact@v4
         with:
           path: plugin/*/build/libs/*.jar
-      - if: github.ref == 'main' && steps.get-next-version.outputs.hasNextVersion == 'true'
+      - if: github.ref == 'main'
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
-          title: ${{ steps.get-next-version.outputs.version }}
+          title: ${{ github.sha }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
           files: plugin/*/build/libs/*.jar

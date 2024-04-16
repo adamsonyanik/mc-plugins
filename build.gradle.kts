@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "io.github.adamsonyanik"
-version = if (System.getenv("GH_ACTIONS_RELEASE_VERSION") == "" || System.getenv("GH_ACTIONS_RELEASE_VERSION") == null) grgit.head().abbreviatedId else System.getenv("GH_ACTIONS_RELEASE_VERSION")
+version = grgit.head().abbreviatedId
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
