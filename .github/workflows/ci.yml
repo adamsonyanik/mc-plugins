@@ -20,14 +20,14 @@ jobs:
           cache: gradle
       - run: ./gradlew build --no-daemon
         env:
-          GH_ACTIONS_RELEASE_VERSION: ${{ steps.get-next-release-version.outputs.new-release-published }}
+          GH_ACTIONS_RELEASE_VERSION: ${{ steps.get-next-release-version.outputs.version }}
       - uses: actions/upload-artifact@v4
         with:
           path: plugin/*/build/libs/*.jar
-      - if: github.ref == 'main' && steps.get-next-release-version.outputs.new-release-published == 'true'
+      - if: github.ref == 'main' && steps.get-next-release-version.outputs.hasNextVersion
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
-          title: ${{ steps.get-next-release-version.outputs.new-release-published }}
+          title: ${{ steps.get-next-release-version.outputs.version }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
           files: plugin/*/build/libs/*.jar
