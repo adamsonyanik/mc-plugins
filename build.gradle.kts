@@ -1,21 +1,11 @@
 plugins {
     java
     kotlin("jvm") version "1.9.23"
-    id("me.qoomon.git-versioning") version "6.4.3"
+    id("org.ajoberstar.grgit") version "4.1.0"
 }
 
 group = "io.github.adamsonyanik"
-version = "0.0.0-SNAPSHOT"
-gitVersioning.apply {
-    refs {
-        branch(".+") {
-            version = "\${ref}-\${commit}-SNAPSHOT"
-        }
-        tag("v(?<version>.*)") {
-            version = "\${ref.version}"
-        }
-    }
-}
+version = System.getenv("GH_ACTIONS_RELEASE_VERSION") ?: grgit.head().abbreviatedId
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
