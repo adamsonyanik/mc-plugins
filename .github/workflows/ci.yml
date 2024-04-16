@@ -20,8 +20,8 @@ jobs:
           cache: gradle
       - run: ./gradlew build --no-daemon
         env:
-          //GH_ACTIONS_RELEASE_VERSION: ${{ steps.get-next-version.outputs.version }}
-          #GH_ACTIONS_RELEASE_VERSION: abc
+          #GH_ACTIONS_RELEASE_VERSION: ${{ steps.get-next-version.outputs.version }}
+          GH_ACTIONS_RELEASE_VERSION: abc
       - uses: actions/upload-artifact@v4
         with:
           path: plugin/*/build/libs/*.jar
