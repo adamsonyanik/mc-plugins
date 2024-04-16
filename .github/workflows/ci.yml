@@ -13,4 +13,5 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
-      - run: ./gradlew build
+          cache: 'gradle'
+      - run: ./gradlew build --no-daemon
