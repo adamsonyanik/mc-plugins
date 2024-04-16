@@ -14,7 +14,7 @@ jobs:
           distribution: zulu
           java-version: 17
           cache: gradle
-      - run: ./gradlew build
+      - run: ./gradlew build -DRELEASE_VERSION=${{ github.sha }}
         env:
           RELEASE_VERSION: abc
       - uses: actions/upload-artifact@v4
