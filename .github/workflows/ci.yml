@@ -5,19 +5,14 @@ on:
   pull_request:
 
 jobs:
-  get-next-release-version:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: semantic-release-action/next-release-version@v4.0.12
-  build:
-    runs-on: ubuntu-latest
-    needs:
-      - get-next-release-version
-    steps:
-      - uses: actions/checkout@v4
+      - uses: thenativeweb/get-next-version@2.6.2
+        id: get-next-release-version
       - uses: actions/setup-java@v4
         with:
           distribution: zulu
@@ -25,14 +20,14 @@ jobs:
           cache: gradle
       - run: ./gradlew build --no-daemon
         env:
-          GH_ACTIONS_RELEASE_VERSION: ${{ needs.get-next-release-version.outputs.new-release-published }}
+          GH_ACTIONS_RELEASE_VERSION: ${{ steps.get-next-release-version.outputs.new-release-published }}
       - uses: actions/upload-artifact@v4
         with:
           path: plugin/*/build/libs/*.jar
-      - if: github.ref == 'main' && needs.get-next-release-version.outputs.new-release-published == 'true'
+      - if: github.ref == 'main' && steps.get-next-release-version.outputs.new-release-published == 'true'
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
-          title: ${{ needs.get-next-release-version.outputs.new-release-published }}
+          title: ${{ steps.get-next-release-version.outputs.new-release-published }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
           files: plugin/*/build/libs/*.jar
