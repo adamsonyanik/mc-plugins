@@ -1,11 +1,10 @@
 plugins {
     java
     kotlin("jvm") version "1.9.23"
-    id("org.ajoberstar.grgit") version "4.1.0"
 }
 
 group = "io.github.adamsonyanik"
-version = grgit.head().abbreviatedId
+version = System.getenv("RELEASE_VERSION") ?: "SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
