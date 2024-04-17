@@ -48,4 +48,6 @@ tasks.register("dev", JavaExec::class) {
     dependsOn("copyPlugins")
     workingDir = file("dev-server")
     classpath = files("dev-server/spigot-$spigotVersion.jar")
+    jvmArgs = listOf("-DIReallyKnowWhatIAmDoingISwear")
+    args = listOf("nogui")
 }
