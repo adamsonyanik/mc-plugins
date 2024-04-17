@@ -25,3 +25,12 @@ subprojects {
         compileOnly(spigot("1.20.4-R0.1-SNAPSHOT"))
     }
 }
+
+tasks.register("copyPlugins", Copy::class) {
+    subprojects {
+        from(tasks.jar.get().outputs.files)
+        into("dev-server/plugins")
+    }
+}
+tasks.build { dependsOn("copyPlugins") }
+tasks.clean { delete("dev-server/plugins") }
