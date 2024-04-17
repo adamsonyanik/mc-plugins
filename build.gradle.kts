@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "io.github.adamsonyanik"
-version = System.getenv("ARTIFACT_VERSION") ?: "DIRTY-SNAPSHOT"
+version = System.getenv("ARTIFACT_VERSION") ?: "LOCAL-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
