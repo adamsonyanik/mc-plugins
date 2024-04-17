@@ -1,7 +1,6 @@
 plugins {
     java
     kotlin("jvm") version "1.9.23"
-    id("me.qoomon.git-versioning") version "6.4.2"
 }
 
 java {
