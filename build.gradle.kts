@@ -5,17 +5,7 @@ plugins {
 }
 
 group = "io.github.adamsonyanik"
-version = "DIRTY-SNAPSHOT"
-gitVersioning.apply {
-    refs {
-        branch(".+") {
-            version = "\${commit.short}\${dirty}-SNAPSHOT"
-        }
-        tag("v(?<version>.*)") {
-            version = "v\${ref.version}"
-        }
-    }
-}
+version = System.getenv("ARTIFACT_VERSION") ?: "DIRTY-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
