@@ -1,14 +1,14 @@
 # mc-plugins
 
-This is a set of minecraft spigot plugins, developed for fun usage in our survival world we play on with some friends.
+This is a set of Minecraft Spigot plugins, developed for fun usage in our survival world we play on with some friends.
 
 ## Contributing
 
-This is a monorepo using gradle submodules.
+This is a monorepo using Gradle submodules.
 Each plugin is available in the [plugin](plugin) directory and is developed, built and deployed separately.
 A plugin can be implemented in either Java or Kotlin.
-And the plugin.yml must not be written automatically.
-Instead, they are generated during the gradle build using a plugin.
+And the plugin.yml must not be written manually.
+Instead, it is automatically generated during the Gradle build using a plugin.
 
 ### Local Development
 
