@@ -20,7 +20,9 @@ jobs:
         with:
           release_branches: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - run: ARTIFACT_VERSION=abc ./gradlew build
+      - run: ./gradlew build
+        env:
+          GHARTIFACTVERSION: abc
       - uses: actions/upload-artifact@v4
         with:
           path: plugin/*/build/libs/*.jar
