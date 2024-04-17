@@ -19,9 +19,6 @@ jobs:
         with:
           distribution: zulu
           java-version: 17
-      - uses: gradle/actions/setup-gradle@v3
-        env:
-          RELEASE_VERSION: abc
       - run: ./gradlew build
         env:
           RELEASE_VERSION: def
