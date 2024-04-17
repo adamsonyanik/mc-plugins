@@ -1,5 +1,7 @@
 # mc-plugins
 
+## Dev Workflow
+
 This is a monorepo using gradle submodules to build all plugins separately.
 To build and release, merge / push to the main branch.
 A GitHub Action will trigger and automatically create a tag and a release with bundled plugin `.jar` files.
