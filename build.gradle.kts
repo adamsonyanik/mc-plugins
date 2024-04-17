@@ -1,12 +1,9 @@
-import kr.entree.spigradle.kotlin.spigot
+plugins {
+    java
+}
 
 val spigotVersion = "1.20.4"
 val spigotSnapshot = "-R0.1-SNAPSHOT"
-
-plugins {
-    java
-    id("kr.entree.spigradle") version("2.4.3") apply(false)
-}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -15,17 +12,25 @@ java {
 
 subprojects {
     apply(plugin = "java")
-    apply(plugin = "kr.entree.spigradle")
 
     group = "io.github.adamsonyanik"
     version = System.getenv("RELEASE_VERSION") ?: "LOCAL-SNAPSHOT"
 
     repositories {
         mavenCentral()
+        maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     }
 
     dependencies {
-        compileOnly(spigot("$spigotVersion$spigotSnapshot"))
+        "compileOnly"("org.spigotmc:spigot-api:$spigotVersion$spigotSnapshot")
+    }
+
+    tasks {
+        processResources {
+            filesMatching("plugin.yml") {
+                expand("name" to project.name, "version" to project.version)
+            }
+        }
     }
 }
 
