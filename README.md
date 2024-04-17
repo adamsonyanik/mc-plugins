@@ -1,6 +1,9 @@
 # mc-plugins
 
-This is a monorepo using gradle sub modules to build all plugins seperately.
-To build and release, just locally create and push a tag.
-A GitHub Action will trigger, compile your code and upload the jar files to a release.
-Please not, that a tag that should be turned into a release must start with v, e.g. v1.0.0
+This is a monorepo using gradle submodules to build all plugins separately.
+To build and release, merge / push to the main branch.
+A GitHub Action will trigger and automatically create a tag and a release with bundled plugin `.jar` files.
+The released version number will be calculated based on conventional commits.
+Please make sure to really use conventional commits, otherwise a release might not be created.
+It also helps to maintain a readable changelog.
+see: https://www.conventionalcommits.org
