@@ -4,6 +4,5 @@ This is a monorepo using gradle submodules to build all plugins separately.
 To build and release, merge / push to the main branch.
 A GitHub Action will trigger and automatically create a tag and a release with bundled plugin `.jar` files.
 The released version number will be calculated based on conventional commits.
-Please make sure to really use conventional commits, otherwise a release might not be created.
 It also helps to maintain a readable changelog.
 see: https://www.conventionalcommits.org
