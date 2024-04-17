@@ -6,6 +6,9 @@ This is a set of minecraft spigot plugins, developed for fun usage in our surviv
 
 This is a monorepo using gradle submodules.
 Each plugin is available in the [plugin](plugin) directory and is developed, built and deployed separately.
+A plugin can be implemented in either Java or Kotlin.
+And the plugin.yml must not be written automatically.
+Instead, they are generated during the gradle build using a plugin.
 
 ### Local Development
 
