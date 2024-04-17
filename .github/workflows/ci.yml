@@ -27,6 +27,7 @@ jobs:
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           title: ${{ steps.create-tag.outputs.new_tag }}
+          automatic_release_tag: ${{ steps.create-tag.outputs.new_tag }}
           prerelease: false
           files: plugin/*/build/libs/*.jar
           repo_token: ${{ secrets.GITHUB_TOKEN }}
