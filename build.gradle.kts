@@ -24,7 +24,7 @@ subprojects {
     }
 
     dependencies {
-        "compileOnly"("org.spigotmc:spigot-api:$spigotVersion$spigotSnapshot")
+        compileOnly("org.spigotmc:spigot-api:$spigotVersion$spigotSnapshot")
     }
 
     tasks {
