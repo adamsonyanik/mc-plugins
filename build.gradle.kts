@@ -41,9 +41,8 @@ subprojects {
 
 tasks.register("copyPlugins", Copy::class) {
     group = "dev"
-    dependsOn("shadowJar")
     subprojects {
-        from(tasks.jar.get().outputs.files)
+        from(tasks.shadowJar.get().outputs.files)
         into("dev-server/plugins")
     }
 }
