@@ -1,5 +1,8 @@
 import kr.entree.spigradle.kotlin.spigot
 
+val spigotVersion = "1.20.4"
+val spigotSnapshot = "-R0.1-SNAPSHOT"
+
 plugins {
     java
     id("kr.entree.spigradle") version("2.4.3") apply(false)
@@ -22,15 +25,23 @@ subprojects {
     }
 
     dependencies {
-        compileOnly(spigot("1.20.4-R0.1-SNAPSHOT"))
+        compileOnly(spigot("$spigotVersion$spigotSnapshot"))
     }
 }
 
 tasks.register("copyPlugins", Copy::class) {
+    group = "dev"
+    dependsOn("jar")
     subprojects {
         from(tasks.jar.get().outputs.files)
         into("dev-server/plugins")
     }
 }
-tasks.build { dependsOn("copyPlugins") }
 tasks.clean { delete("dev-server/plugins") }
+tasks.register("dev", JavaExec::class) {
+    group = "dev"
+    dependsOn("copyPlugins")
+    classpath = files("dev-server/spigot-$spigotVersion.jar")
+    debug = true
+    debugOptions { port = 5005 }
+}
