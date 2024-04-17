@@ -1,6 +1,14 @@
 # mc-plugins
 
-## Dev Workflow
+This is a set of minecraft spigot plugins, developed for fun usage in our survival world we play on with some friends.
+
+## Contributing
+
+### Local Development
+
+TODO
+
+### Release Workflow
 
 This is a monorepo using gradle submodules to build all plugins separately.
 To build and release, merge / push to the main branch.
