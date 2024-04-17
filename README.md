@@ -12,7 +12,19 @@ Instead, it is automatically generated during the Gradle build using a plugin.
 
 ### Local Development
 
-TODO
+For local development, you will quite likely use the [dev-server](dev-server).
+To start it, just run `./gradlew dev`.
+The task will build all plugins, copy them to the plugin folder of the dev-server and spin it up.
+If you use an IDE to start the task, you will also have the possibility to run in debug mode.
+You can set breakpoints in your plugin code :)
+
+Once the dev server is up and running, and you continue to implement your plugins, you might get to some point the plugins need the be refreshed on the server.
+You now got two possibilities.
+First of all, you could kill the running Gradle process and rerun the task using `./gradlew dev`.
+Even though your IDE will be able to automate the restart, it is extremely slow.
+You might want to consider not killing the dev-server and instead run `./gradlew copyPlugins` followed by the ingame command `/reload`.
+
+![a screenshot of the Gradle dev tasks in IntelliJ IDEA](docs/dev.png)
 
 ### Release Workflow
 
