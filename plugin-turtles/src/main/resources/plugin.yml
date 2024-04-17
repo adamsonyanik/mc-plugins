@@ -1,4 +1,4 @@
 name: $name
 version: $version
-main: io.github.adamsonyanik.MCStoneGrinder
+main: io.github.adamsonyanik.MCTurtles
 api-version: 1.19

@@ -1,17 +1,19 @@
 plugins {
     java
+    id("com.github.johnrengelman.shadow") version("8.1.1")
 }
 
 val spigotVersion = "1.20.4"
 val spigotSnapshot = "-R0.1-SNAPSHOT"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_17
 }
 
 subprojects {
     apply(plugin = "java")
+    apply(plugin = "com.github.johnrengelman.shadow")
 
     group = "io.github.adamsonyanik"
     version = System.getenv("RELEASE_VERSION") ?: "LOCAL-SNAPSHOT"
@@ -31,12 +33,15 @@ subprojects {
                 expand("name" to project.name, "version" to project.version)
             }
         }
+        shadowJar {
+            configurations = listOf(project.configurations.runtimeClasspath.get())
+        }
     }
 }
 
 tasks.register("copyPlugins", Copy::class) {
     group = "dev"
-    dependsOn("jar")
+    dependsOn("shadowJar")
     subprojects {
         from(tasks.jar.get().outputs.files)
         into("dev-server/plugins")

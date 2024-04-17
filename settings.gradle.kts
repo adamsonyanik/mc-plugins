@@ -1,1 +1,5 @@
+include("plugin-autoplant")
+include("plugin-floo")
 include("plugin-stonegrinder")
+include("plugin-timber")
+include("plugin-turtles")
