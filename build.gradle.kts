@@ -1,10 +1,21 @@
 plugins {
     java
     kotlin("jvm") version "1.9.23"
+    id("me.qoomon.git-versioning") version "6.4.2"
 }
 
 group = "io.github.adamsonyanik"
-version = (System.getenv("GITHUB_SHA")?.substring(0, 7) ?: "local") + "-SNAPSHOT"
+version = "DIRTY-SNAPSHOT"
+gitVersioning.apply {
+    refs {
+        branch(".+") {
+            version = "\${commit.short}\${dirty}-SNAPSHOT"
+        }
+        tag("v(?<version>.*)") {
+            version = "v\${ref.version}"
+        }
+    }
+}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
