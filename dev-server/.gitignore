@@ -1,1 +1,4 @@
-plugins/
+*
+!spigot-*.jar
+!server.properties
+!eula.txt

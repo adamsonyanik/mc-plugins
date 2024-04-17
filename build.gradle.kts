@@ -41,7 +41,6 @@ tasks.clean { delete("dev-server/plugins") }
 tasks.register("dev", JavaExec::class) {
     group = "dev"
     dependsOn("copyPlugins")
+    workingDir = file("dev-server")
     classpath = files("dev-server/spigot-$spigotVersion.jar")
-    debug = true
-    debugOptions { port = 5005 }
 }
