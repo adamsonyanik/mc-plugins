@@ -27,12 +27,12 @@ jobs:
           RELEASE_VERSION: ${{ steps.create-tag.outputs.new_tag || steps.short-sha.outputs.sha }}
       - uses: actions/upload-artifact@v4
         with:
-          path: plugin/*/build/libs/*.jar
+          path: plugin-*/build/libs/*.jar
       - if: steps.create-tag.outputs.new_tag
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           title: ${{ steps.create-tag.outputs.new_tag }}
           automatic_release_tag: ${{ steps.create-tag.outputs.new_tag }}
           prerelease: false
-          files: plugin/*/build/libs/*.jar
+          files: plugin-*/build/libs/*.jar
           repo_token: ${{ secrets.GITHUB_TOKEN }}

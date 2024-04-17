@@ -1,2 +1,1 @@
-include("plugin:floo")
-include("plugin:stonegrinder")
+include("plugin-stonegrinder")
