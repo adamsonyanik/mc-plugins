@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "io.github.adamsonyanik"
-version = System.getenv("GHARTIFACTVERSION") ?: "LOCAL-SNAPSHOT"
+version = System.getenv("RELEASE_VERSION") ?: "LOCAL-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
