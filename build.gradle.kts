@@ -4,9 +4,6 @@ plugins {
     id("me.qoomon.git-versioning") version "6.4.2"
 }
 
-group = "io.github.adamsonyanik"
-version = System.getenv("RELEASE_VERSION") ?: "LOCAL-SNAPSHOT"
-
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
@@ -15,6 +12,9 @@ java {
 subprojects {
     apply(plugin = "java")
     apply(plugin = "kotlin")
+
+    group = "io.github.adamsonyanik"
+    version = System.getenv("RELEASE_VERSION") ?: "LOCAL-SNAPSHOT"
 
     repositories {
         mavenCentral()
