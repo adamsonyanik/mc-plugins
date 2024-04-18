@@ -14,10 +14,9 @@ public class MCAutoReload extends JavaPlugin {
         watcher.onFileChanged((path) -> {
           var file = path.getFileName();
           if (file.toString().endsWith(".jar")) {
-            Bukkit.broadcastMessage("[plugin-autoreload]: detected change in: " + file);
             Bukkit.getScheduler().cancelTasks(this);
             Bukkit.getScheduler().scheduleSyncDelayedTask(this, () -> {
-              Bukkit.broadcastMessage("[plugin-autoreload]: performing reload ...");
+              Bukkit.broadcastMessage("[plugin-autoreload]: detected change(s) in plugins. performing reload ...");
               Bukkit.reload();
               Bukkit.broadcastMessage("[plugin-autoreload]: reload complete");
             }, 20);
