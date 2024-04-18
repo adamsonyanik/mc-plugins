@@ -1,3 +1,6 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 plugins {
     java
     id("com.github.johnrengelman.shadow") version("8.1.1")
@@ -16,7 +19,7 @@ subprojects {
     apply(plugin = "com.github.johnrengelman.shadow")
 
     group = "io.github.adamsonyanik"
-    version = System.getenv("RELEASE_VERSION") ?: "LOCAL-SNAPSHOT"
+    version = System.getenv("RELEASE_VERSION") ?: "${LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss"))}-SNAPSHOT"
 
     repositories {
         mavenCentral()
@@ -41,12 +44,17 @@ subprojects {
 
 tasks.register("copyPlugins", Copy::class) {
     group = "dev"
+    dependsOn("cleanCopiedPlugins")
     subprojects {
         from(tasks.shadowJar.get().outputs.files)
         into("dev-server/plugins")
     }
 }
-tasks.clean { delete("dev-server/plugins") }
+tasks.register("cleanCopiedPlugins") {
+    group = "dev"
+    delete(fileTree("dev-server/plugins") { include("*.jar") })
+}
+tasks.clean { dependsOn("cleanCopiedPlugins") }
 tasks.register("dev", JavaExec::class) {
     group = "dev"
     dependsOn("copyPlugins")
