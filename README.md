@@ -16,11 +16,12 @@ The task will build all plugins, copy them to the plugin folder of the dev-serve
 If you use an IDE to start the task, you will also have the possibility to run in debug mode.
 You can set breakpoints in your plugin code :)
 
-Once the dev server is up and running, and you continue to implement your plugins, you might get to some point the plugins need the be refreshed on the server.
+Once the dev server is up and running, and you continue to implement your plugins, you might get to some point the plugins need to be refreshed on the server.
 You now got two possibilities.
 First of all, you could kill the running Gradle process and rerun the task using `./gradlew dev`.
-Even though your IDE will be able to automate the restart, it is extremely slow.
-You might want to consider not killing the dev-server and instead run `./gradlew copyPlugins` followed by the ingame command `/reload`.
+Even though your IDE will be able to automate these two steps, it is extremely slow.
+You might want to consider not killing the dev-server and instead run `./gradlew copyPlugins`.
+The dev-server detects changes to `.jar` files in the plugins folder and automatically performs a reload.
 
 ![a screenshot of the Gradle dev tasks in IntelliJ IDEA](docs/dev.png)
 

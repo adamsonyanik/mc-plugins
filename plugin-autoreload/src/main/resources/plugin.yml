@@ -1,0 +1,4 @@
+name: $name
+version: $version
+main: io.github.adamsonyanik.MCAutoReload
+api-version: 1.19
